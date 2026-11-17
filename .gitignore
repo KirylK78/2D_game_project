@@ -1,0 +1,10 @@
+# Временные файлы ВС (мусорные)
+.vs/
+x64/
+Debug/
+Release/
+*.user
+*.pdb
+*.ilk
+*.obj
+*.ipch
