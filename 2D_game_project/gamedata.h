@@ -7,6 +7,6 @@ enum GameMenu{
 };
 struct GameData{ //Общие данные для всех модулей
 	GameMenu currentMenu = MENU; //Текущее местонахождение в игре
-	int Diamonds = 0; 
-	int PlayerSkin = 0;
+	int Diamonds = 0; //Текущее кол-во алмазов
+	int PlayerSkin = 0; //Текущий скин игрока
 };
