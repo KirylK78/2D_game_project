@@ -138,6 +138,21 @@ int main() {
 				btnMagaz.setOutlineColor(sf::Color(110, 175, 255));
 			}
 
+			if (data.PlayerSkin == SKINDEF) {
+				
+			}
+			else if (data.PlayerSkin == SKIN1) {
+
+			}
+			else if (data.PlayerSkin == SKIN2) {
+
+			}
+			else if (data.PlayerSkin == SKIN3) {
+
+			}
+			else if (data.PlayerSkin == SKIN4) {
+
+			}
 			window.clear(sf::Color(28, 32, 42)); //Отрисовка фона
 			window.draw(btnMaze); //Отрисовка остального контента 
 			window.draw(txtMaze);

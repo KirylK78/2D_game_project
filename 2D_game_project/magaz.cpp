@@ -66,29 +66,48 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	sf::RectangleShape btnBuy1(sf::Vector2f(140.f, 30.f));
 	btnBuy1.setPosition(65.f, 315.f);
 	btnBuy1.setFillColor(sf::Color(45, 115, 210));
-	btnBuy1.setOutlineThickness(4.f); 
+	btnBuy1.setOutlineThickness(3.f); 
 	btnBuy1.setOutlineColor(sf::Color(110, 175, 255)); 
 
 	sf::RectangleShape btnBuy2(sf::Vector2f(140.f, 30.f));
 	btnBuy2.setPosition(315.f, 315.f);
 	btnBuy2.setFillColor(sf::Color(45, 115, 210));
-	btnBuy2.setOutlineThickness(4.f);
+	btnBuy2.setOutlineThickness(3.f);
 	btnBuy2.setOutlineColor(sf::Color(110, 175, 255));
 
 	sf::RectangleShape btnBuy3(sf::Vector2f(140.f, 30.f));
 	btnBuy3.setPosition(565.f, 315.f);
 	btnBuy3.setFillColor(sf::Color(45, 115, 210));
-	btnBuy3.setOutlineThickness(4.f);
+	btnBuy3.setOutlineThickness(3.f);
 	btnBuy3.setOutlineColor(sf::Color(110, 175, 255));
 
 	sf::RectangleShape btnBuy4(sf::Vector2f(140.f, 30.f));
 	btnBuy4.setPosition(815.f, 315.f);
 	btnBuy4.setFillColor(sf::Color(45, 115, 210));
-	btnBuy4.setOutlineThickness(4.f);
+	btnBuy4.setOutlineThickness(3.f);
 	btnBuy4.setOutlineColor(sf::Color(110, 175, 255));
 
 	window.clear(sf::Color(28, 32, 42));
 
+	sf::Vector2i CursorPosit = sf::Mouse::getPosition(window);
+	sf::Vector2f MousePosit = window.mapPixelToCoords(CursorPosit);
+
+	sf::Event event;
+	while (window.pollEvent(event)) {
+		if (event.type == sf::Event::Closed) window.close();
+	}
+	if (btnBuy1.getGlobalBounds().contains(MousePosit)) {
+		btnBuy1.setOutlineColor(sf::Color(0, 0, 250));
+	}
+	if (btnBuy2.getGlobalBounds().contains(MousePosit)) {
+		btnBuy2.setOutlineColor(sf::Color(0, 0, 250));
+	}
+	if (btnBuy3.getGlobalBounds().contains(MousePosit)) {
+		btnBuy3.setOutlineColor(sf::Color(0, 0, 250));
+	}
+	if (btnBuy4.getGlobalBounds().contains(MousePosit)) {
+		btnBuy4.setOutlineColor(sf::Color(0, 0, 250));
+	}
 	window.draw(SKIN1);
 	window.draw(SKIN2);
 	window.draw(SKIN3);
