@@ -7,7 +7,7 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 
 	sf::Font font;
 
-	font.loadFromFile("CormorantGaramond-VariableFont_wght.ttf");
+	font.loadFromFile("StiffStaff-Heavy.otf");
 
 	sf::Texture skin1;
 	sf::Texture skin2;
@@ -87,6 +87,22 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	btnBuy4.setOutlineThickness(3.f);
 	btnBuy4.setOutlineColor(sf::Color(110, 175, 255));
 
+	sf::Text txtBuy1(L"Купить", font, 28); 
+	txtBuy1.setPosition(80.f, 310.f); 
+	txtBuy1.setFillColor(sf::Color(245, 248, 255));
+
+	sf::Text txtBuy2(L"Купить", font, 28);
+	txtBuy2.setPosition(330.f, 310.f);
+	txtBuy2.setFillColor(sf::Color(245, 248, 255));
+
+	sf::Text txtBuy3(L"Купить", font, 28);
+	txtBuy3.setPosition(580.f, 310.f);
+	txtBuy3.setFillColor(sf::Color(245, 248, 255));
+
+	sf::Text txtBuy4(L"Купить", font, 28);
+	txtBuy4.setPosition(830.f, 310.f);
+	txtBuy4.setFillColor(sf::Color(245, 248, 255));
+
 	window.clear(sf::Color(28, 32, 42));
 
 	sf::Vector2i CursorPosit = sf::Mouse::getPosition(window);
@@ -120,6 +136,10 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	window.draw(btnBuy2);
 	window.draw(btnBuy3);
 	window.draw(btnBuy4);
+	window.draw(txtBuy1);
+	window.draw(txtBuy2);
+	window.draw(txtBuy3);
+	window.draw(txtBuy4);
 
 	window.display();
 	

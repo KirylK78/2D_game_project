@@ -8,14 +8,14 @@
 #include "magaz.h"
 int main() {
 
-	sf::RenderWindow window(sf::VideoMode(1100, 700), L"Казик");  //Инициализация основного окна
+	sf::RenderWindow window(sf::VideoMode(1100, 700), L"Game");  //Инициализация основного окна
 	window.setFramerateLimit(60); //Ограничение фпс
 
 	GameData data; 
 	LoadProgress(data); //Загрузка сохранений (валюта,скины)
 
 	sf::Font font; //Загрузка основного шрифта
-	if (!font.loadFromFile("CormorantGaramond-VariableFont_wght.ttf")) {
+	if (!font.loadFromFile("StiffStaff-Heavy.otf")) {
 		std::cout << "Ошибка загрузки шрифта";
 	}
 	  
@@ -59,9 +59,9 @@ int main() {
 	btnCasino.setOutlineColor(sf::Color(110, 175, 255)); //Цвет 
 
 	sf::RectangleShape btnMagaz(sf::Vector2f(120.f, 40.f)); //Инициализация кнопки ПРЫЖКИ и ее размер
-	btnMagaz.setPosition(835.f, 10.f); //Местоположение
+	btnMagaz.setPosition(839.f, 10.f); //Местоположение
 	btnMagaz.setFillColor(sf::Color(45, 115, 210)); //Цвет
-	sf::Text txtMagaz(L"Магазин", font, 28); //Инициализация текста внутри кнопки ПРЫЖКИ
+	sf::Text txtMagaz(L"Магазин", font, 23); //Инициализация текста внутри кнопки ПРЫЖКИ
 	txtMagaz.setPosition(845.f, 10.f); //Местоположение
 	txtMagaz.setFillColor(sf::Color(245, 248, 255)); //Цвет 
 	btnMagaz.setOutlineThickness(4.f); //Добавление границы кнопки и ее размер
@@ -79,13 +79,13 @@ int main() {
 	while (window.isOpen()) //Основной цикл игры (работает до закрытия игры)
 	{
 		sf::Vector2i CursorPosit = sf::Mouse::getPosition(window);
-		sf::Vector2f MousePosit = window.mapPixelToCoords(CursorPosit);
+		sf::Vector2f MousePosit = window.mapPixelToCoords(CursorPosit); //Отслеживание курсора
 
 		sf::Event event;
 		while (window.pollEvent(event)) //Цикл обработки действий
 		{
 			if (event.type == sf::Event::Closed) window.close(); //Закрытие игры если пользователь нажал на крестик
-			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) { //Смена режима при нажатии
 				if (data.currentMenu == MENU) {
 					if (btnMaze.getGlobalBounds().contains(MousePosit)){
 						data.currentMenu = MAZE;
@@ -106,7 +106,7 @@ int main() {
 		if (data.currentMenu == MENU) //Цикл меню (когда пользователь в меню)
 		{
 
-			if (btnMaze.getGlobalBounds().contains(MousePosit)) {
+			if (btnMaze.getGlobalBounds().contains(MousePosit)) {  //Изменение при навидении
 				btnMaze.setOutlineColor(sf::Color(0, 0, 250));
 			}
 			else
@@ -115,7 +115,7 @@ int main() {
 			}
 
 			if (btnPlatformer.getGlobalBounds().contains(MousePosit)) {
-				btnPlatformer.setOutlineColor(sf::Color(0, 0, 250));
+				btnPlatformer.setOutlineColor(sf::Color(0, 0, 250)); 
 			}
 			else
 			{
@@ -123,7 +123,7 @@ int main() {
 			}
 
 			if (btnCasino.getGlobalBounds().contains(MousePosit)) {
-				btnCasino.setOutlineColor(sf::Color(0, 0, 250));
+				btnCasino.setOutlineColor(sf::Color(0, 0, 250)); 
 			}
 			else
 			{
@@ -138,7 +138,7 @@ int main() {
 				btnMagaz.setOutlineColor(sf::Color(110, 175, 255));
 			}
 
-			if (data.PlayerSkin == SKINDEF) {
+			if (data.PlayerSkin == SKINDEF) { //Смена скинов
 				
 			}
 			else if (data.PlayerSkin == SKIN1) {
@@ -168,7 +168,7 @@ int main() {
 			window.display(); //Показ финального кадра после отрисовки всего контента
 
 		}
-		else if (data.currentMenu == PLATFORMER) {
+		else if (data.currentMenu == PLATFORMER) { //Смена режимов
 			runPlatformer(window, data);
 		}
 		else if (data.currentMenu == MAZE) {
