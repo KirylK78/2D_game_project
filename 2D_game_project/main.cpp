@@ -8,23 +8,23 @@
 #include "magaz.h"
 int main() {
 
-	sf::RenderWindow window(sf::VideoMode(1100, 700), L"Game");  //Инициализация основного окна
-	window.setFramerateLimit(60); //Ограничение фпс
+	sf::RenderWindow window(sf::VideoMode(1100, 700), L"Game");  
+	window.setFramerateLimit(60); 
 
 	GameData data; 
-	LoadProgress(data); //Загрузка сохранений (валюта,скины)
+	LoadProgress(data); 
 
-	sf::Font font; //Загрузка основного шрифта
+	sf::Font font; 
 	if (!font.loadFromFile("StiffStaff-Heavy.otf")) {
 		std::cout << "Ошибка загрузки шрифта";
 	}
 	  
-	sf::Texture diamondTextur; //Загрузка изображения алмаза
+	sf::Texture diamondTextur; 
 	if (!diamondTextur.loadFromFile("papik.png")) {
 		std::cout << "Ошибка загрузки изобр.";
 	}
 
-	sf::Sprite diamondSP(diamondTextur); //Создание самого изображения в меню
+	sf::Sprite diamondSP(diamondTextur); 
 	diamondSP.setPosition(710.f, 10.f); //Местоположение
 	diamondSP.setScale(
 		90.f / diamondTextur.getSize().x, //Ширина
@@ -76,15 +76,51 @@ int main() {
 	btnDiamonds.setOutlineThickness(4.f); //Добавление границы кнопки и ее размер
 	btnDiamonds.setOutlineColor(sf::Color(110, 175, 255)); //Цвет 
 
-	while (window.isOpen()) //Основной цикл игры (работает до закрытия игры)
+	while (window.isOpen()) 
 	{
 		sf::Vector2i CursorPosit = sf::Mouse::getPosition(window);
-		sf::Vector2f MousePosit = window.mapPixelToCoords(CursorPosit); //Отслеживание курсора
+		sf::Vector2f MousePosit = window.mapPixelToCoords(CursorPosit); 
 
 		sf::Event event;
-		while (window.pollEvent(event)) //Цикл обработки действий
+		while (window.pollEvent(event)) 
 		{
-			if (event.type == sf::Event::Closed) window.close(); //Закрытие игры если пользователь нажал на крестик
+			if (event.type == sf::Event::Closed) window.close();
+			if (data.currentMenu == MENU) {
+				if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+						if ((data.PlayerSkin == SKINDEF) && (data.unlockSKIN[1] == 1)) {
+							data.PlayerSkin = SKIN1;
+						}
+						else if ((data.PlayerSkin == SKIN1) && (data.unlockSKIN[2] == 1)) {
+							data.PlayerSkin = SKIN2;
+						}
+						else if ((data.PlayerSkin == SKIN2) && (data.unlockSKIN[3] == 1)) {
+							data.PlayerSkin = SKIN3;
+						}
+						else if ((data.PlayerSkin == SKIN3) && (data.unlockSKIN[4] == 1)) {
+							data.PlayerSkin = SKIN4;
+						}
+						else if ((data.PlayerSkin == SKIN4) && (data.unlockSKIN[0] == 1)) {
+							data.PlayerSkin = SKINDEF;
+						}
+				}
+				else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
+					if ((data.PlayerSkin == SKINDEF) && (data.unlockSKIN[4] == 1)) {
+						data.PlayerSkin = SKIN4;
+					}
+					else if ((data.PlayerSkin == SKIN4) && (data.unlockSKIN[3] == 1)) {
+						data.PlayerSkin = SKIN3;
+					}
+					else if ((data.PlayerSkin == SKIN3) && (data.unlockSKIN[2] == 1)) {
+						data.PlayerSkin = SKIN2;
+					}
+					else if ((data.PlayerSkin == SKIN2) && (data.unlockSKIN[1] == 1)) {
+						data.PlayerSkin = SKIN1;
+					}
+					else if ((data.PlayerSkin == SKIN1) && (data.unlockSKIN[0] == 1)) {
+						data.PlayerSkin = SKINDEF;
+					}
+				}
+			}
 			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) { //Смена режима при нажатии
 				if (data.currentMenu == MENU) {
 					if (btnMaze.getGlobalBounds().contains(MousePosit)){
@@ -103,10 +139,10 @@ int main() {
 			}
 		}
 
-		if (data.currentMenu == MENU) //Цикл меню (когда пользователь в меню)
+		if (data.currentMenu == MENU) 
 		{
 
-			if (btnMaze.getGlobalBounds().contains(MousePosit)) {  //Изменение при навидении
+			if (btnMaze.getGlobalBounds().contains(MousePosit)) {  
 				btnMaze.setOutlineColor(sf::Color(0, 0, 250));
 			}
 			else
@@ -137,24 +173,9 @@ int main() {
 			{
 				btnMagaz.setOutlineColor(sf::Color(110, 175, 255));
 			}
-
-			if (data.PlayerSkin == SKINDEF) { //Смена скинов
-				
-			}
-			else if (data.PlayerSkin == SKIN1) {
-
-			}
-			else if (data.PlayerSkin == SKIN2) {
-
-			}
-			else if (data.PlayerSkin == SKIN3) {
-
-			}
-			else if (data.PlayerSkin == SKIN4) {
-
-			}
-			window.clear(sf::Color(28, 32, 42)); //Отрисовка фона
-			window.draw(btnMaze); //Отрисовка остального контента 
+			txtDiamonds.setString(std::to_string(data.Diamonds));
+			window.clear(sf::Color(28, 32, 42)); 
+			window.draw(btnMaze); 
 			window.draw(txtMaze);
 			window.draw(btnPlatformer);
 			window.draw(txtPlatformer);
@@ -165,10 +186,10 @@ int main() {
 			window.draw(txtCasino);
 			window.draw(btnMagaz);
 			window.draw(txtMagaz);
-			window.display(); //Показ финального кадра после отрисовки всего контента
+			window.display(); 
 
 		}
-		else if (data.currentMenu == PLATFORMER) { //Смена режимов
+		else if (data.currentMenu == PLATFORMER) {
 			runPlatformer(window, data);
 		}
 		else if (data.currentMenu == MAZE) {
@@ -181,6 +202,6 @@ int main() {
 			runMagaz(window, data);
 		}
 	}
-
+	SaveProgress(data);
 	return 0;
 }

@@ -8,14 +8,15 @@ enum GameMenu{
 	MAGAZ = 4,
 };
 enum SkinID {
-	SKINDEF = 0, //
-	SKIN1 = 1, //
-	SKIN2 = 2, //
-	SKIN3 = 3, //
-	SKIN4 = 4, //
+	SKINDEF = 0, 
+	SKIN1 = 1, 
+	SKIN2 = 2, 
+	SKIN3 = 3, 
+	SKIN4 = 4, 
 };
-struct GameData{ //Общие данные для всех модулей
-	GameMenu currentMenu = MENU; //Текущее местонахождение в игре
-	int Diamonds = 0; //Текущее кол-во алмазов
-	int PlayerSkin = SKINDEF; //Текущий скин игрока
+struct GameData{ 
+	GameMenu currentMenu = MENU; 
+	int Diamonds = 0; 
+	int PlayerSkin = SKINDEF; 
+	bool unlockSKIN[5] = { true, false, false, false, false };
 };

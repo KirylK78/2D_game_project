@@ -6,7 +6,7 @@ void runCasino(sf::RenderWindow& window, GameData& data)
 		return;
 	}
 
-	window.clear(sf::Color(100, 70, 200));
+	window.clear(sf::Color(28, 32, 42));
 
 	window.display();
 }

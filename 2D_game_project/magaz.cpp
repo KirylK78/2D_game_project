@@ -1,4 +1,5 @@
 #include "magaz.h"
+#include "gamedata.h"
 void runMagaz(sf::RenderWindow& window, GameData& data)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
@@ -123,6 +124,32 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	}
 	if (btnBuy4.getGlobalBounds().contains(MousePosit)) {
 		btnBuy4.setOutlineColor(sf::Color(0, 0, 250));
+	}
+	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+		if (btnBuy1.getGlobalBounds().contains(MousePosit)) {
+			if ((data.Diamonds >= 5) && (data.unlockSKIN[1] == false)){
+				data.unlockSKIN[1] = true;
+				data.Diamonds = data.Diamonds - 5;
+			}
+		}
+		if (btnBuy2.getGlobalBounds().contains(MousePosit)) {
+			if ((data.Diamonds >= 10) && (data.unlockSKIN[2] == false)) {
+				data.unlockSKIN[2] = true;
+				data.Diamonds = data.Diamonds - 10;
+			}
+		}
+		if (btnBuy3.getGlobalBounds().contains(MousePosit)) {
+			if ((data.Diamonds >= 15) && (data.unlockSKIN[3] == false)) {
+				data.unlockSKIN[3] = true;
+				data.Diamonds = data.Diamonds - 15;
+			}
+		}
+		if (btnBuy4.getGlobalBounds().contains(MousePosit)) {
+			if ((data.Diamonds >= 20) && (data.unlockSKIN[4] == false)) {
+				data.unlockSKIN[4] = true;
+				data.Diamonds = data.Diamonds - 20;
+			}
+		}
 	}
 	window.draw(SKIN1);
 	window.draw(SKIN2);

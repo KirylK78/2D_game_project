@@ -6,7 +6,7 @@ void runMaze(sf::RenderWindow& window, GameData& data)
 		return;
 	}
 
-	window.clear(sf::Color(220, 20, 50));
+	window.clear(sf::Color(28, 32, 42));
 
 	window.display();
 }
