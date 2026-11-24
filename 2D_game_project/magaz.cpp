@@ -1,5 +1,6 @@
 #include "magaz.h"
 #include "gamedata.h"
+#include <iostream>
 void runMagaz(sf::RenderWindow& window, GameData& data)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
@@ -19,91 +20,110 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	skin2.loadFromFile("papik.png");
 	skin3.loadFromFile("papik.png");
 	skin4.loadFromFile("papik.png");
+	sf::Texture diamondTextur;
+	diamondTextur.loadFromFile("papik.png");
+
 
 	sf::Sprite SKIN1(skin1);
-	SKIN1.setPosition(10.f, 10.f);
+	SKIN1.setPosition(10.f, 30.f);
 	SKIN1.setScale(
 	250.f / skin1.getSize().x,
 	300.f / skin1.getSize().y
 	);
 
 	sf::Sprite SKIN2(skin2);
-	SKIN2.setPosition(260.f, 10.f);
+	SKIN2.setPosition(260.f, 30.f);
 	SKIN2.setScale(
 		250.f / skin2.getSize().x,
 		300.f / skin2.getSize().y
 	);
 
 	sf::Sprite SKIN3(skin3);
-	SKIN3.setPosition(510.f, 10.f);
+	SKIN3.setPosition(510.f, 30.f);
 	SKIN3.setScale(
 		250.f / skin3.getSize().x,
 		300.f / skin3.getSize().y
 	);
 
 	sf::Sprite SKIN4(skin4);
-	SKIN4.setPosition(760.f, 10.f);
+	SKIN4.setPosition(760.f, 30.f);
 	SKIN4.setScale(
 		250.f / skin4.getSize().x,
 		300.f / skin4.getSize().y
 	);
 
 	sf::Text txtSKIN1("SKIN1", font, 20);
-	txtSKIN1.setPosition(110.f, 280.f);
+	txtSKIN1.setPosition(110.f, 300.f);
 	txtSKIN1.setFillColor(sf::Color(45, 115, 210));
 
 	sf::Text txtSKIN2("SKIN2", font, 20);
-	txtSKIN2.setPosition(360.f, 280.f);
+	txtSKIN2.setPosition(360.f, 300.f);
 	txtSKIN2.setFillColor(sf::Color(45, 115, 210));
 
 	sf::Text txtSKIN3("SKIN3", font, 20);
-	txtSKIN3.setPosition(610.f, 280.f);
+	txtSKIN3.setPosition(610.f, 300.f);
 	txtSKIN3.setFillColor(sf::Color(45, 115, 210));
 
 	sf::Text txtSKIN4("SKIN4", font, 20);
-	txtSKIN4.setPosition(860.f, 280.f);
+	txtSKIN4.setPosition(860.f, 300.f);
 	txtSKIN4.setFillColor(sf::Color(45, 115, 210));
 
 	sf::RectangleShape btnBuy1(sf::Vector2f(140.f, 30.f));
-	btnBuy1.setPosition(65.f, 315.f);
+	btnBuy1.setPosition(65.f, 335.f);
 	btnBuy1.setFillColor(sf::Color(45, 115, 210));
 	btnBuy1.setOutlineThickness(3.f); 
 	btnBuy1.setOutlineColor(sf::Color(110, 175, 255)); 
 
 	sf::RectangleShape btnBuy2(sf::Vector2f(140.f, 30.f));
-	btnBuy2.setPosition(315.f, 315.f);
+	btnBuy2.setPosition(315.f, 335.f);
 	btnBuy2.setFillColor(sf::Color(45, 115, 210));
 	btnBuy2.setOutlineThickness(3.f);
 	btnBuy2.setOutlineColor(sf::Color(110, 175, 255));
 
 	sf::RectangleShape btnBuy3(sf::Vector2f(140.f, 30.f));
-	btnBuy3.setPosition(565.f, 315.f);
+	btnBuy3.setPosition(565.f, 335.f);
 	btnBuy3.setFillColor(sf::Color(45, 115, 210));
 	btnBuy3.setOutlineThickness(3.f);
 	btnBuy3.setOutlineColor(sf::Color(110, 175, 255));
 
 	sf::RectangleShape btnBuy4(sf::Vector2f(140.f, 30.f));
-	btnBuy4.setPosition(815.f, 315.f);
+	btnBuy4.setPosition(815.f, 335.f);
 	btnBuy4.setFillColor(sf::Color(45, 115, 210));
 	btnBuy4.setOutlineThickness(3.f);
 	btnBuy4.setOutlineColor(sf::Color(110, 175, 255));
 
 	sf::Text txtBuy1(L"Купить", font, 28); 
-	txtBuy1.setPosition(80.f, 310.f); 
+	txtBuy1.setPosition(80.f, 330.f); 
 	txtBuy1.setFillColor(sf::Color(245, 248, 255));
 
 	sf::Text txtBuy2(L"Купить", font, 28);
-	txtBuy2.setPosition(330.f, 310.f);
+	txtBuy2.setPosition(330.f, 330.f);
 	txtBuy2.setFillColor(sf::Color(245, 248, 255));
 
 	sf::Text txtBuy3(L"Купить", font, 28);
-	txtBuy3.setPosition(580.f, 310.f);
+	txtBuy3.setPosition(580.f, 330.f);
 	txtBuy3.setFillColor(sf::Color(245, 248, 255));
 
 	sf::Text txtBuy4(L"Купить", font, 28);
-	txtBuy4.setPosition(830.f, 310.f);
+	txtBuy4.setPosition(830.f, 330.f);
 	txtBuy4.setFillColor(sf::Color(245, 248, 255));
 
+	sf::RectangleShape btnDiamonds(sf::Vector2f(120.f, 40.f)); //Инициализация счетчика алмазов и его размер
+	btnDiamonds.setPosition(700.f, 10.f); //Местоположение
+	btnDiamonds.setFillColor(sf::Color(45, 115, 210)); //Цвет
+	sf::Text txtDiamonds(std::to_wstring(data.Diamonds), font, 20); //Инициализация самого счетчика (из заголовка gamedata)
+	txtDiamonds.setPosition(770.f, 20.f); //Местоположение
+	txtDiamonds.setFillColor(sf::Color(245, 248, 255)); //Цвет
+	btnDiamonds.setOutlineThickness(4.f); //Добавление границы кнопки и ее размер
+	btnDiamonds.setOutlineColor(sf::Color(110, 175, 255)); //Цвет 
+
+	sf::Sprite diamondSP(diamondTextur);
+	diamondSP.setPosition(710.f, 10.f);
+	diamondSP.setScale(
+		90.f / diamondTextur.getSize().x,
+		40.f / diamondTextur.getSize().y
+	);
+	
 	window.clear(sf::Color(28, 32, 42));
 
 	sf::Vector2i CursorPosit = sf::Mouse::getPosition(window);
@@ -151,6 +171,7 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 			}
 		}
 	}
+	
 	window.draw(SKIN1);
 	window.draw(SKIN2);
 	window.draw(SKIN3);
@@ -167,7 +188,9 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	window.draw(txtBuy2);
 	window.draw(txtBuy3);
 	window.draw(txtBuy4);
-
+	window.draw(btnDiamonds);
+	window.draw(txtDiamonds);
+	window.draw(diamondSP);
 	window.display();
 	
 }

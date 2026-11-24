@@ -31,6 +31,66 @@ int main() {
 	    40.f / diamondTextur.getSize().y //Высота
 		);
 
+	sf::Texture SKINDEFTEXTUR;
+	if (!SKINDEFTEXTUR.loadFromFile("skindef.jpg")) {
+		std::cout << "Ошибка загрузки изобр.";
+	}
+
+	sf::Sprite SKINDEFSP(SKINDEFTEXTUR);
+	SKINDEFSP.setPosition(670.f, 400.f); 
+	SKINDEFSP.setScale(
+		200.f / SKINDEFTEXTUR.getSize().x, 
+		200.f / SKINDEFTEXTUR.getSize().y 
+	);
+
+	sf::Texture SKIN1TEXTUR;
+	if (!SKIN1TEXTUR.loadFromFile("skin1.jpg")) {
+		std::cout << "Ошибка загрузки изобр.";
+	}
+
+	sf::Sprite SKIN1SP(SKIN1TEXTUR);
+	SKIN1SP.setPosition(670.f, 400.f);
+	SKIN1SP.setScale(
+		200.f / SKIN1TEXTUR.getSize().x,
+		200.f / SKIN1TEXTUR.getSize().y
+	);
+
+	sf::Texture SKIN2TEXTUR;
+	if (!SKIN2TEXTUR.loadFromFile("skin2.jpg")) {
+		std::cout << "Ошибка загрузки изобр.";
+	}
+
+	sf::Sprite SKIN2SP(SKIN2TEXTUR);
+	SKIN2SP.setPosition(670.f, 400.f);
+	SKIN2SP.setScale(
+		200.f / SKIN2TEXTUR.getSize().x,
+		200.f / SKIN2TEXTUR.getSize().y
+	);
+
+	sf::Texture SKIN3TEXTUR;
+	if (!SKIN3TEXTUR.loadFromFile("skin3.jpg")) {
+		std::cout << "Ошибка загрузки изобр.";
+	}
+
+	sf::Sprite SKIN3SP(SKIN3TEXTUR);
+	SKIN3SP.setPosition(670.f, 400.f);
+	SKIN3SP.setScale(
+		200.f / SKIN3TEXTUR.getSize().x,
+		200.f / SKIN3TEXTUR.getSize().y
+	);
+
+	sf::Texture SKIN4TEXTUR;
+	if (!SKIN4TEXTUR.loadFromFile("skin4.jpg")) {
+		std::cout << "Ошибка загрузки изобр.";
+	}
+
+	sf::Sprite SKIN4SP(SKIN4TEXTUR);
+	SKIN4SP.setPosition(670.f, 400.f);
+	SKIN4SP.setScale(
+		200.f / SKIN4TEXTUR.getSize().x,
+		200.f / SKIN4TEXTUR.getSize().y
+	);
+
 	sf::RectangleShape btnMaze(sf::Vector2f(300.f, 60.f)); //Инициализация кнопки ЛАБИРИНТ и ее размер
 	btnMaze.setPosition(40.f, 90.f); //Местоположение
 	btnMaze.setFillColor(sf::Color(45, 115, 210)); //Цвет
@@ -186,8 +246,12 @@ int main() {
 			window.draw(txtCasino);
 			window.draw(btnMagaz);
 			window.draw(txtMagaz);
+			if (data.PlayerSkin == SKINDEF) window.draw(SKINDEFSP);
+			else if (data.PlayerSkin == SKIN1) window.draw(SKIN1SP);
+			else if (data.PlayerSkin == SKIN2) window.draw(SKIN2SP);
+			else if (data.PlayerSkin == SKIN3) window.draw(SKIN3SP);
+			else if (data.PlayerSkin == SKIN4) window.draw(SKIN4SP);
 			window.display(); 
-
 		}
 		else if (data.currentMenu == PLATFORMER) {
 			runPlatformer(window, data);
