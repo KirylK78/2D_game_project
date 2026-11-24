@@ -108,14 +108,14 @@ void runMagaz(sf::RenderWindow& window, GameData& data)
 	txtBuy4.setPosition(830.f, 330.f);
 	txtBuy4.setFillColor(sf::Color(245, 248, 255));
 
-	sf::RectangleShape btnDiamonds(sf::Vector2f(120.f, 40.f)); //Инициализация счетчика алмазов и его размер
-	btnDiamonds.setPosition(700.f, 10.f); //Местоположение
-	btnDiamonds.setFillColor(sf::Color(45, 115, 210)); //Цвет
-	sf::Text txtDiamonds(std::to_wstring(data.Diamonds), font, 20); //Инициализация самого счетчика (из заголовка gamedata)
-	txtDiamonds.setPosition(770.f, 20.f); //Местоположение
-	txtDiamonds.setFillColor(sf::Color(245, 248, 255)); //Цвет
-	btnDiamonds.setOutlineThickness(4.f); //Добавление границы кнопки и ее размер
-	btnDiamonds.setOutlineColor(sf::Color(110, 175, 255)); //Цвет 
+	sf::RectangleShape btnDiamonds(sf::Vector2f(120.f, 40.f)); 
+	btnDiamonds.setPosition(700.f, 10.f); 
+	btnDiamonds.setFillColor(sf::Color(45, 115, 210)); 
+	sf::Text txtDiamonds(std::to_wstring(data.Diamonds), font, 20); 
+	txtDiamonds.setPosition(770.f, 20.f); 
+	txtDiamonds.setFillColor(sf::Color(245, 248, 255)); 
+	btnDiamonds.setOutlineThickness(4.f); 
+	btnDiamonds.setOutlineColor(sf::Color(110, 175, 255)); 
 
 	sf::Sprite diamondSP(diamondTextur);
 	diamondSP.setPosition(710.f, 10.f);
